@@ -9,6 +9,7 @@ from os.path import exists
 import re
 import sqlite3
 import time
+import shutil
 
 class Arguments():
 	""" argparse wrapper, to reduce code verbosity """
@@ -603,9 +604,9 @@ if __name__ == "__main__":
 		args.extractAll()
 	if exists(args.fileDB):
 		extractData(args)
+		shutil.copy(defaultDBlocation, "D:\\Games\\GOG Backup\\ProgramData\\GOG.com\\Galaxy\\storage\\galaxy-2.0.db", follow_symlinks=True)
 	else:
 		print('Unable to find the DB “{}”, make sure that {}'.format(
 			args.fileDB,
 			'GOG Galaxy 2 is installed' if defaultDBlocation == args.fileDB else 'you specified the correct path'
 		))
-
